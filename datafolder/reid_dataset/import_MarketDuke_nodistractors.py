@@ -30,7 +30,4 @@ def import_MarketDuke_nodistractors(data_dir, dataset_name):
                     if id not in globals()[group]['ids']:
                         globals()[group]['ids'].append(id)
                     globals()[group]['data'].append([images,globals()[group]['ids'].index(id),id,cam,name.split('.')[0]])
-    print train['data']
-
-if __name__=='__main__':
-    import_MarketDuke_nodistractors('/home/ltx/','Market-1501')
+    return train, query, gallery
