@@ -36,5 +36,4 @@ def import_Market1501(dataset_dir):
 
 if __name__=='__main__':
     train=import_Market1501('/home/ltx')
-    print train
 

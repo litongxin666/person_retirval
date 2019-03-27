@@ -6,7 +6,7 @@ import model
 from PIL import Image
 import os
 from utils import Utils, Logger
-from Text2ImgDataset import Text2ImgDataSet
+#from Text2ImgDataset import Text2ImgDataSet
 from torchvision import transforms
 from datafolder.folder import Train_Dataset
 

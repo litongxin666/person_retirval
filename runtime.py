@@ -1,4 +1,4 @@
-from trainer import Trainer
+from train import Trainer
 
 dataset_path = '/home/litongxin'
 lr = 0.0002
