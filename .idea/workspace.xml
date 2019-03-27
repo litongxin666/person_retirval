@@ -25,8 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../person_retrival/Text2Imgdataset.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1125">
-              <caret line="45" column="21" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
+            <state relative-caret-position="675">
+              <caret line="39" column="45" lean-forward="true" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="45" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
               </folding>
@@ -37,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../person_retrival/datafolder/folder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2173">
-              <caret line="33" column="32" lean-forward="true" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+            <state relative-caret-position="727">
+              <caret line="77" column="40" lean-forward="true" selection-start-line="77" selection-start-column="40" selection-end-line="77" selection-end-column="40" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -79,8 +79,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../person_retrival/datafolder/reid_dataset/import_Market1501Attribute.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-912">
-              <caret line="149" column="4" selection-start-line="149" selection-start-column="4" selection-end-line="149" selection-end-column="4" />
+            <state relative-caret-position="525">
+              <caret line="204" column="43" selection-start-line="204" selection-start-column="43" selection-end-line="204" selection-end-column="43" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -91,8 +91,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../person_retrival/datafolder/reid_dataset/import_MarketDuke_nodistractors.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="713">
-              <caret line="32" column="32" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+            <state relative-caret-position="613">
+              <caret line="28" column="30" lean-forward="true" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -119,6 +119,7 @@
         <option value="$PROJECT_DIR$/../person_retrival/datafolder/reid_dataset/import_Market1501.py" />
         <option value="$PROJECT_DIR$/../person_retrival/datafolder/reid_dataset/import_Market1501Attribute.py" />
         <option value="$PROJECT_DIR$/../person_retrival/datafolder/reid_dataset/import_MarketDuke_nodistractors.py" />
+        <option value="$PROJECT_DIR$/../person_retrival/datafolder/folder.py" />
       </list>
     </option>
   </component>
@@ -363,12 +364,12 @@
       <updated>1552985181153</updated>
       <workItem from="1552985185354" duration="5544000" />
       <workItem from="1553483578086" duration="599000" />
-      <workItem from="1553561747688" duration="9955000" />
+      <workItem from="1553561747688" duration="11538000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16098000" />
+    <option name="totallyTimeSpent" value="17681000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -441,16 +442,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../person_retrival/Text2Imgdataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1125">
-          <caret line="45" column="21" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../person_retrival/datafolder/reid_dataset/import_Market1501.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="677">
@@ -468,27 +459,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../person_retrival/datafolder/reid_dataset/import_MarketDuke_nodistractors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="32" column="32" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../person_retrival/datafolder/reid_dataset/import_Market1501Attribute.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-912">
-          <caret line="149" column="4" selection-start-line="149" selection-start-column="4" selection-end-line="149" selection-end-column="4" />
+        <state relative-caret-position="525">
+          <caret line="204" column="43" selection-start-line="204" selection-start-column="43" selection-end-line="204" selection-end-column="43" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../person_retrival/datafolder/reid_dataset/import_MarketDuke_nodistractors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="613">
+          <caret line="28" column="30" lean-forward="true" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../person_retrival/Text2Imgdataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="39" column="45" lean-forward="true" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../person_retrival/datafolder/folder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2173">
-          <caret line="33" column="32" lean-forward="true" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+        <state relative-caret-position="727">
+          <caret line="77" column="40" lean-forward="true" selection-start-line="77" selection-start-column="40" selection-end-line="77" selection-end-column="40" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
