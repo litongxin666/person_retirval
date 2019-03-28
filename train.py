@@ -9,6 +9,7 @@ from utils import Utils, Logger
 #from Text2ImgDataset import Text2ImgDataSet
 from torchvision import transforms
 from datafolder.folder import Train_Dataset
+from datafolder.folder import Test_Dataset
 
 class Trainer(object):
     def __init__(self,dataset_path, lr, vis_screen, save_path, l1_coef, l2_coef,
@@ -21,7 +22,7 @@ class Trainer(object):
 
         self.generator.apply(Utils.weights_init)
 
-        self.dataset = Train_Dataset(dataset_path,dataset_name='Market-1501')
+        self.dataset = Test_Dataset(dataset_path,dataset_name='Market-1501')
 
         self.noise_dim = 100
         self.batch_size = batch_size
@@ -163,8 +164,9 @@ class Trainer(object):
 
     def test(self):
         for sample in self.data_loader:
-            right_images = sample['right_images']
-            right_embed = sample['right_embed']
+            data, label, id, name = sample
+            right_images = data
+            right_embed = label
 
             right_images = Variable(right_images.float()).cuda()
             right_embed = Variable(right_embed.float()).cuda()
@@ -173,13 +175,13 @@ class Trainer(object):
             noise = Variable(torch.randn(right_images.size(0), 100)).cuda()
             noise = noise.view(noise.size(0), 100, 1, 1)
             model = self.generator.cuda()
-            model.load_state_dict(torch.load('/home/litongxin/Text2Img/Text2Img/checkpoints/result/gen_190.pth'))
+            model.load_state_dict(torch.load('/home/litongxin/person_retirval/checkpoints/result/gen_190.pth'))
             model.eval()
             fake_images = model(right_embed, noise)
             self.logger.draw(right_images, fake_images)
 
             for image, t in zip(fake_images, right_embed):
                 im = Image.fromarray(image.data.mul_(127.5).add_(127.5).byte().permute(1, 2, 0).cpu().numpy())
-                im.save('results/{0}.jpg'.format(self.save_path))
+                im.save('results/{0}.jpg'.format(name))
 
 
