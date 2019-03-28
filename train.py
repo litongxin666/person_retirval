@@ -180,8 +180,8 @@ class Trainer(object):
             fake_images = model(right_embed, noise)
             self.logger.draw(right_images, fake_images)
 
-            for image, t in zip(fake_images, right_embed):
+            for image, t,n in zip(fake_images, right_embed,name):
                 im = Image.fromarray(image.data.mul_(127.5).add_(127.5).byte().permute(1, 2, 0).cpu().numpy())
-                im.save('results/{0}.jpg'.format(name))
+                im.save('results/{0}.jpg'.format(n))
 
 
