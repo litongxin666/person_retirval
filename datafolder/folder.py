@@ -24,7 +24,10 @@ class Train_Dataset(data.Dataset):
 
         self.num_ids = len(train['ids'])
         self.num_labels = len(self.label)
-
+        #print(self.num_labels)
+        #print(self.num_ids)
+        #print('data_num')
+        #print(len(train['data']))
         # distribution:每个属性的正样本占比
         distribution = np.zeros(self.num_labels)
         for k, v in train_attr.items():
@@ -71,10 +74,12 @@ class Train_Dataset(data.Dataset):
         cam = self.train_data[index][3]
         label = np.asarray(self.train_attr[id])
         data = Image.open(img_path).convert("RGB")
+        data=data.resize((64,64))
         data=self.validate_image(data)
         #data = self.transforms(data)
         data = np.array(data, dtype=float)
         data=torch.FloatTensor(data)
+        data=data.sub_(127.5).div_(127.5)
         name = self.train_data[index][4]
         return data, i, label, id, cam, name
 
