@@ -21,6 +21,7 @@ class Train_Dataset(data.Dataset):
             train_attr, test_attr, self.label = import_DukeMTMCAttribute_binary(data_dir)
         else:
             print('Input should only be Market1501 or DukeMTMC')
+        self.train_inter = np.load('/home/litongxin/Person-Attribute-Recognition-MarketDuke/inter_train.npy')
 
         self.num_ids = len(train['ids'])
         self.num_labels = len(self.label)
@@ -73,10 +74,11 @@ class Train_Dataset(data.Dataset):
         id = self.train_data[index][2]
         cam = self.train_data[index][3]
         label = np.asarray(self.train_attr[id])
-        data = Image.open(img_path).convert("RGB")
-        data=data.resize((64,64))
-        data=self.validate_image(data)
+        #data = Image.open(img_path).convert("RGB")
+        #data=data.resize((64,64))
+        #data=self.validate_image(data)
         #data = self.transforms(data)
+        data=self.train_inter[index]
         data = np.array(data, dtype=float)
         data=torch.FloatTensor(data)
         data=data.sub_(127.5).div_(127.5)
@@ -151,6 +153,7 @@ class Test_Dataset(data.Dataset):
 
     def labels(self):
         return self.label
+
 
 
 if __name__=='__main__':

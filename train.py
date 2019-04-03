@@ -22,7 +22,7 @@ class Trainer(object):
 
         self.generator.apply(Utils.weights_init)
 
-        self.dataset = Test_Dataset(dataset_path,dataset_name='Market-1501')
+        self.dataset = Train_Dataset(dataset_path,dataset_name='Market-1501')
 
         self.noise_dim = 100
         self.batch_size = batch_size

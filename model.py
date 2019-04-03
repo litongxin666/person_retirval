@@ -8,7 +8,7 @@ class generator(nn.Module):
     def __init__(self):
         super(generator, self).__init__()
         self.image_size = 64
-        self.num_channels = 3
+        self.num_channels = 1
         self.noise_dim = 100
         self.embed_dim = 30
         self.latent_dim = self.noise_dim + self.embed_dim
@@ -16,25 +16,21 @@ class generator(nn.Module):
 
         # based on: https://github.com/pytorch/examples/blob/master/dcgan/main.py
         self.netG = nn.Sequential(
-            nn.ConvTranspose2d(self.latent_dim, self.ngf * 8, 4, 1, 0, bias=False),
-            nn.BatchNorm2d(self.ngf * 8),
-            nn.ReLU(True),
-            # state size. (ngf*8) x 4 x 4
-            nn.ConvTranspose2d(self.ngf * 8, self.ngf * 4, 4, 2, 1, bias=False),
+            nn.ConvTranspose2d(self.latent_dim, self.ngf * 4, 4, 1, 0, bias=False),
             nn.BatchNorm2d(self.ngf * 4),
             nn.ReLU(True),
-            # state size. (ngf*4) x 8 x 8
+            # state size. (ngf*4) x 4 x 4
             nn.ConvTranspose2d(self.ngf * 4, self.ngf * 2, 4, 2, 1, bias=False),
             nn.BatchNorm2d(self.ngf * 2),
             nn.ReLU(True),
-            # state size. (ngf*2) x 16 x 16
+            # state size. (ngf*2) x 8 x 8
             nn.ConvTranspose2d(self.ngf * 2, self.ngf, 4, 2, 1, bias=False),
             nn.BatchNorm2d(self.ngf),
             nn.ReLU(True),
-            # state size. (ngf) x 32 x 32
+            # state size. (ngf) x 16 x 16
             nn.ConvTranspose2d(self.ngf, self.num_channels, 4, 2, 1, bias=False),
             nn.Tanh()
-            # state size. (num_channels) x 64 x 64
+            # state size. (num_channels) x 32 x 32
         )
 
     def forward(self, embed_vector, z):
@@ -48,37 +44,33 @@ class discriminator(nn.Module):
     def __init__(self):
         super(discriminator, self).__init__()
         self.image_size = 64
-        self.num_channels = 3
+        self.num_channels = 1
         self.embed_dim = 30
         # self.projected_embed_dim = 128
         self.ndf = 64
         self.B_dim = 128
         self.C_dim = 16
-
         self.netD_1 = nn.Sequential(
-            # input is (nc) x 64 x 64
+            # input is (nc) x 32 x 32
             nn.Conv2d(self.num_channels, self.ndf, 4, 2, 1, bias=False),
             nn.LeakyReLU(0.2, inplace=True),
-            # state size. (ndf) x 32 x 32
+            # state size. (ndf) x 16 x 16
             nn.Conv2d(self.ndf, self.ndf * 2, 4, 2, 1, bias=False),
-            nn.BatchNorm2d(self.ndf * 2),
+            nn.BatchNorm2d(self.ndf * 4),
             nn.LeakyReLU(0.2, inplace=True),
-            # state size. (ndf*2) x 16 x 16
+            # state size. (ndf*2) x 8 x 8
             nn.Conv2d(self.ndf * 2, self.ndf * 4, 4, 2, 1, bias=False),
             nn.BatchNorm2d(self.ndf * 4),
             nn.LeakyReLU(0.2, inplace=True),
-            # state size. (ndf*4) x 8 x 8
-            nn.Conv2d(self.ndf * 4, self.ndf * 8, 4, 2, 1, bias=False),
-            nn.BatchNorm2d(self.ndf * 8),
-            nn.LeakyReLU(0.2, inplace=True),
+            # output size (ndf*4) x 4 x 4
         )
 
         # self.projector = Concat_embed(self.embed_dim, self.projected_embed_dim)
 
         self.netD_2 = nn.Sequential(
-            # state size. (ndf*8) x 4 x 4
+            # state size. (ndf*2) x 4 x 4
             # nn.Conv2d(self.ndf * 8 + self.projected_embed_dim, 1, 4, 1, 0, bias=False),
-            nn.Conv2d(self.ndf * 8 + self.embed_dim, 1, 4, 1, 0, bias=False),
+            nn.Conv2d(self.ndf * 2 + self.embed_dim, 1, 4, 1, 0, bias=False),
             nn.Sigmoid()
         )
 
@@ -92,4 +84,3 @@ class discriminator(nn.Module):
         x = self.netD_2(x)
 
         return x.view(-1, 1).squeeze(1), x_intermediate
-
