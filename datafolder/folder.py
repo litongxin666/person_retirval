@@ -22,8 +22,6 @@ class Train_Dataset(data.Dataset):
             train_attr, test_attr, self.label = import_DukeMTMCAttribute_binary(data_dir)
         else:
             print('Input should only be Market1501 or DukeMTMC')
-        self.train_inter = np.load('/home/litongxin/Person-Attribute-Recognition-MarketDuke/inter_train.npy')
-
         self.num_ids = len(train['ids'])
         self.num_labels = len(self.label)
         #print(self.num_labels)
@@ -52,7 +50,8 @@ class Train_Dataset(data.Dataset):
         #     print('Input should only be train or val')
 
         self.num_ids = len(self.train_ids)
-
+        #print(self.train_data.shape)
+        #print(self.train_data)
         if transforms is None:
             if train_val == 'train':
                 self.transforms = T.Compose([
@@ -75,12 +74,15 @@ class Train_Dataset(data.Dataset):
         id = self.train_data[index][2]
         cam = self.train_data[index][3]
         label = np.asarray(self.train_attr[id])
+
         #data = Image.open(img_path).convert("RGB")
         #data=self.validate_image(data)
         #data = self.transforms(data)
         data=np.load(img_path)
         data=data.resize((32,32))
         data = np.array(data, dtype=float)
+        #print(data.shape)
+        #print(type(data))
         data=torch.FloatTensor(data)
         data=data.sub_(127.5).div_(127.5)
         name = self.train_data[index][4]

@@ -9,7 +9,8 @@ l2_coef = 100
 batch_size = 64
 num_workers = 4
 epochs = 200
+gpu_id=[1,2]
 
-trainer = Trainer(dataset_path, lr, vis_screen, save_path, l1_coef, l2_coef, batch_size, num_workers, epochs)
-#trainer._train_gan(cls=False)
-trainer.test()
+trainer = Trainer(dataset_path, lr, vis_screen, save_path, l1_coef, l2_coef, batch_size, num_workers, epochs,gpu_id)
+trainer._train_gan(cls=False)
+#trainer.test()
