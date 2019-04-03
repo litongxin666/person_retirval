@@ -15,3 +15,4 @@ from .pytorch_prepare import pytorch_prepare
 from .pytorch_prepare import pytorch_prepare_all
 from .marketduke_to_hdf5 import marketduke_to_hdf5
 from .cuhk03_to_image import cuhk03_to_image
+from .inter_training_data import inter_training_data
