@@ -70,6 +70,7 @@ class Train_Dataset(data.Dataset):
     def __getitem__(self, index):
 
         img_path = self.train_data[index][0]
+        print(img_path)
         i = self.train_data[index][1]
         id = self.train_data[index][2]
         cam = self.train_data[index][3]
@@ -79,12 +80,13 @@ class Train_Dataset(data.Dataset):
         #data=self.validate_image(data)
         #data = self.transforms(data)
         data=np.load(img_path)
+        #print(data)
         data=data.resize((32,32))
-        data = np.array(data, dtype=float)
+        #data = np.array(data, dtype=float)
         #print(data.shape)
         #print(type(data))
         data=torch.FloatTensor(data)
-        data=data.sub_(127.5).div_(127.5)
+        #data=data.sub_(127.5).div_(127.5)
         name = self.train_data[index][4]
         return data, i, label, id, cam, name
 

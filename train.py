@@ -13,10 +13,10 @@ from datafolder.folder import Test_Dataset
 
 class Trainer(object):
     def __init__(self,dataset_path, lr, vis_screen, save_path, l1_coef, l2_coef,
-                 batch_size, num_workers, epochs):
+                 batch_size, num_workers, epochs, gpu_id):
 
-        self.generator = torch.nn.DataParallel(model.generator().cuda())
-        self.discriminator = torch.nn.DataParallel(model.discriminator().cuda())
+        self.generator = torch.nn.DataParallel(model.generator().cuda(),device_ids=self.gpu_id)
+        self.discriminator = torch.nn.DataParallel(model.discriminator().cuda(),device_ids=self.gpu_id)
 
         self.discriminator.apply(Utils.weights_init)
 
@@ -43,6 +43,7 @@ class Trainer(object):
         #self.logger = Logger(vis_screen)
         self.checkpoints_path = 'checkpoints'
         self.save_path = save_path
+        self.gpu_id=gpu_id
     def train(self, cls=True):
         self._train_gan(cls)
 
