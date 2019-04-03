@@ -67,8 +67,8 @@ class Trainer(object):
 
                 real_labels = torch.ones(right_images.size(0))
                 fake_labels = torch.zeros(right_images.size(0))
+
                 print("size",right_images.shape)
-                print("data",right_images)
                 # ======== One sided label smoothing ==========
                 # Helps preventing the discriminator from overpowering the
                 # generator adding penalty when the discriminator is too confident

@@ -7,13 +7,14 @@ from torchvision import transforms as T
 from .reid_dataset import import_MarketDuke_nodistractors
 from .reid_dataset import import_Market1501Attribute_binary
 from .reid_dataset import import_DukeMTMCAttribute_binary
+from .reid_dataset import inter_training_data
 
 
 class Train_Dataset(data.Dataset):
 
     def __init__(self, data_dir, dataset_name, transforms=None, train_val='train' ):
 
-        train, query, gallery = import_MarketDuke_nodistractors(data_dir, dataset_name)
+        train = inter_training_data('/home/litongxin/Market-1501/new_train')
 
         if dataset_name == 'Market-1501':
             train_attr, test_attr, self.label = import_Market1501Attribute_binary(data_dir)
@@ -33,20 +34,20 @@ class Train_Dataset(data.Dataset):
             distribution += np.array(v)
         self.distribution = distribution / len(train_attr)
 
-        if train_val == 'train':
-            self.train_data = train['data']
-            self.train_ids = train['ids']
-            self.train_attr = train_attr
-        elif train_val == 'query':
-            self.train_data = query['data']
-            self.train_ids = query['ids']
-            self.train_attr = test_attr
-        elif train_val == 'gallery':
-            self.train_data = gallery['data']
-            self.train_ids = gallery['ids']
-            self.train_attr = test_attr
-        else:
-            print('Input should only be train or val')
+        #if train_val == 'train':
+        self.train_data = train['data']
+        self.train_ids = train['ids']
+        self.train_attr = train_attr
+        # elif train_val == 'query':
+        #     self.train_data = query['data']
+        #     self.train_ids = query['ids']
+        #     self.train_attr = test_attr
+        # elif train_val == 'gallery':
+        #     self.train_data = gallery['data']
+        #     self.train_ids = gallery['ids']
+        #     self.train_attr = test_attr
+        # else:
+        #     print('Input should only be train or val')
 
         self.num_ids = len(self.train_ids)
         #print(self.train_data.shape)
@@ -73,13 +74,11 @@ class Train_Dataset(data.Dataset):
         id = self.train_data[index][2]
         cam = self.train_data[index][3]
         label = np.asarray(self.train_attr[id])
-        data = Image.open(img_path).convert("RGB")
-        #data=data.resize((64,64))
+
+        #data = Image.open(img_path).convert("RGB")
         #data=self.validate_image(data)
         #data = self.transforms(data)
-        #print(index)
-        #print(self.train_inter[0])
-        #data=self.train_inter[index]
+        data=np.load(img_path)
         data=data.resize((32,32))
         data = np.array(data, dtype=float)
         #print(data.shape)
