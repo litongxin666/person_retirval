@@ -139,6 +139,6 @@ class Logger(object):
         self.hist_Dx = []
         self.hist_DGx = []
 
-    def draw(self, right_images, fake_images):
+    def draw(self,right_images,fake_images):
         self.viz.draw('generated images', fake_images.data.cpu().numpy()[:64] * 128 + 128)
         self.viz.draw('real images', right_images.data.cpu().numpy()[:64] * 128 + 128)
