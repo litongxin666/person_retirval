@@ -75,10 +75,10 @@ class Train_Dataset(data.Dataset):
         cam = self.train_data[index][3]
         label = np.asarray(self.train_attr[id])
         #data = Image.open(img_path).convert("RGB")
-        #data=data.resize((64,64))
         #data=self.validate_image(data)
         #data = self.transforms(data)
         data=self.train_inter[index]
+        data=data.resize((32,32))
         data = np.array(data, dtype=float)
         data=torch.FloatTensor(data)
         data=data.sub_(127.5).div_(127.5)
