@@ -67,7 +67,7 @@ class Trainer(object):
 
                 real_labels = torch.ones(right_images.size(0))
                 fake_labels = torch.zeros(right_images.size(0))
-
+                #print("size",right_images.size(0))
                 # ======== One sided label smoothing ==========
                 # Helps preventing the discriminator from overpowering the
                 # generator adding penalty when the discriminator is too confident
@@ -83,7 +83,8 @@ class Trainer(object):
                 outputs, activation_real = self.discriminator(right_images, right_embed)
                 real_loss = criterion(outputs, smoothed_real_labels)
                 real_score = outputs
-
+                #print("output",outputs.size())
+                #print("inter",activation_real.size())
                 # if cls:
                 #     outputs, _ = self.discriminator(wrong_images, right_embed)
                 #     wrong_loss = criterion(outputs, fake_labels)
@@ -178,7 +179,7 @@ class Trainer(object):
             model.load_state_dict(torch.load('/home/litongxin/person_retirval/checkpoints/result/gen_190.pth'))
             model.eval()
             fake_images = model(right_embed, noise)
-            self.logger.draw(right_images, fake_images)
+            self.logger.draw(right_images,fake_images)
 
             for image, t,n in zip(fake_images, right_embed,name):
                 im = Image.fromarray(image.data.mul_(127.5).add_(127.5).byte().permute(1, 2, 0).cpu().numpy())

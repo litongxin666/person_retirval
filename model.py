@@ -85,11 +85,13 @@ class discriminator(nn.Module):
     def forward(self, inp, embed):
         # print(embed.size())
         x_intermediate = self.netD_1(inp)
+        #print("inter",x_intermediate.size())
         replicated_embed = embed.repeat(4, 4, 1, 1).permute(2, 3, 0, 1)
         # print(replicated_embed.size())
         # print(x_intermediate.size())
         x = torch.cat([x_intermediate, replicated_embed], 1)
         x = self.netD_2(x)
-
+        #print("x size",x.size())
+        #print("x reshape",x.view(-1,1).squeeze(1).size())
         return x.view(-1, 1).squeeze(1), x_intermediate
 
