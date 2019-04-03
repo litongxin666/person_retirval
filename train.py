@@ -40,7 +40,7 @@ class Trainer(object):
         self.optimD = torch.optim.Adam(self.discriminator.parameters(), lr=self.lr, betas=(self.beta1, 0.999))
         self.optimG = torch.optim.Adam(self.generator.parameters(), lr=self.lr, betas=(self.beta1, 0.999))
 
-        self.logger = Logger(vis_screen)
+        #self.logger = Logger(vis_screen)
         self.checkpoints_path = 'checkpoints'
         self.save_path = save_path
     def train(self, cls=True):
@@ -67,7 +67,8 @@ class Trainer(object):
 
                 real_labels = torch.ones(right_images.size(0))
                 fake_labels = torch.zeros(right_images.size(0))
-                #print("size",right_images.size(0))
+                print("size",right_images.shape)
+                print("data",right_images)
                 # ======== One sided label smoothing ==========
                 # Helps preventing the discriminator from overpowering the
                 # generator adding penalty when the discriminator is too confident
@@ -129,15 +130,15 @@ class Trainer(object):
                 g_loss.backward()
                 self.optimG.step()
 
-                if iteration % 5 == 0:
-                    self.logger.log_iteration_gan(epoch, d_loss, g_loss, real_score, fake_score)
-                    self.logger.draw(right_images, fake_images)
+                #if iteration % 5 == 0:
+                #    self.logger.log_iteration_gan(epoch, d_loss, g_loss, real_score, fake_score)
+                #    self.logger.draw(right_images, fake_images)
 
                 # self.logger.plot_epoch_w_scores(epoch)
 
 
-            if (epoch) % 10 == 0:
-                Utils.save_checkpoint(self.discriminator, self.generator, self.checkpoints_path, self.save_path, epoch)
+            #if (epoch) % 10 == 0:
+            #    Utils.save_checkpoint(self.discriminator, self.generator, self.checkpoints_path, self.save_path, epoch)
 
     def predict(self):
         for sample in self.data_loader:
